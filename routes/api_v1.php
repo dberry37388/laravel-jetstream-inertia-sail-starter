@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Users\ListUsersApiController;
+use App\Http\Controllers\Api\V1\Users\StoreUserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users', ListUsersApiController::class);
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', ListUsersApiController::class)->name('list');
+    Route::post('/', StoreUserApiController::class)->name('store');
+});
