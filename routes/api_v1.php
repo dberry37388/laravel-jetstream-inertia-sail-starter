@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Users\ListUsersApiController;
 use App\Http\Controllers\Api\V1\Users\StoreUserApiController;
+use App\Http\Controllers\Api\V1\Users\UpdateUserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', ListUsersApiController::class)->name('list');
         Route::post('/', StoreUserApiController::class)->name('store');
+        Route::put('{user}', UpdateUserApiController::class)->name('update');
     });
 });
